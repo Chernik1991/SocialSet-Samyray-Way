@@ -1,9 +1,13 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
+import {MassagesData, MassagesDataType,} from '../../../index';
 
+type MyPoststype = {
+    MassagesData:Array<MassagesDataType>
+}
 
-const MyPosts = () => {
+export const MyPosts = (props: MyPoststype) => {
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
@@ -16,11 +20,12 @@ const MyPosts = () => {
                 </div>
             </div>
             <div className={s.posts}>
-                <Post message="Hi, how are you?" likesCount="0"/>
-                <Post message="It's my first post" likesCount="23"/>
+                {MassagesData.map((m) => {
+                    return (
+                        <Post key={m.id} message={m.massage} likesCount={m.likesCount}/>
+                    )
+                })}
             </div>
         </div>
     )
 }
-
-export default MyPosts;
