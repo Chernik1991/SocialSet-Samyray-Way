@@ -20,26 +20,43 @@ const DialogsItem=(props:propsDialogsItemType)=>{
     )
 }
 
-const Massege=(props:propsMessageType)=>{
+const Massage=(props:propsMessageType)=>{
     return(
     <div className={s.message}>{props.message}</div>
     )
 }
+
+const DialogsData=[
+    {id:'1', name:'Dimych'},
+    {id:'2', name:'Andrey'},
+    {id:'3', name:'Sveta'},
+    {id:'4', name:'Victor'},
+    {id:'5', name:'Valera'}
+]
+
+const MassagesData=[
+    {id:'1', massege:'Hi'},
+    {id:'2', massege:'Hi 2'},
+    {id:'3', massege:'Hi Hi Hi'}
+]
+
+
 export const Dialogs = () => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
-                <DialogsItem name={'Dimych'} id={'1'} />
-                <DialogsItem name={'Andrey'} id={'2'} />
-                <DialogsItem name={'Sveta'} id={'3'} />
-                <DialogsItem name={'Victor'} id={'4'} />
-                <DialogsItem name={'Valera'} id={'5'} />
-
+                {DialogsData.map((m)=>{
+                    return(
+                        <DialogsItem name={m.name} id={m.id}/>
+                    )
+                })}
             </div>
             <div className={s.messages}>
-                <Massege message={'Hi'}/>
-                <Massege message={'Hi 2'}/>
-                <Massege message={"Hi Hi Hi"}/>
+                {MassagesData.map((m)=>{
+                    return(
+                        <Massage key={m.id} message={m.massege}/>
+                    )
+                })}
             </div>
         </div>
     );
