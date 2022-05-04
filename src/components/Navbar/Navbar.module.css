@@ -4,11 +4,11 @@
     padding: 20px;
 }
 
-.item a{
+.dialog a{
     color: white;
     text-decoration: none;
 }
 
-.item a.active {
+.dialog a.active {
     color: gold;
 }

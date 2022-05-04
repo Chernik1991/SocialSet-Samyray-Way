@@ -1,9 +1,9 @@
 import React from 'react';
-import s from './Setting.module.css';
+// import s from './Setting.module.css';
 
 export const Setting = () => {
     return (
-        <div>
+        <div >
             Setting
         </div>
     );
