@@ -1,18 +1,18 @@
 import React from 'react';
+import { PostsDataType } from '../../State/State';
 // import s from './Profile.module.css';
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {MassagesData, MassagesDataType} from '../../index';
 
 type ProfileType={
-    MassagesData:Array<MassagesDataType>
+    PostsData:Array<PostsDataType>
 }
 
 export const Profile = (props:ProfileType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts MassagesData={MassagesData}/>
+            <MyPosts PostsData={props.PostsData}/>
         </div>
     )
 }

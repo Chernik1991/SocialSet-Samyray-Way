@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import {DialogsItem} from './DialogsItem/DialogsItem';
 import {Message} from './Messages/Messages';
-import {DialogsDataType, DialogsMassagesDataType} from '../../index';
+import {DialogsDataType, DialogsMassagesDataType} from '../../State/State';
 
 type DialogsType={
     DialogsData:Array<DialogsDataType>,

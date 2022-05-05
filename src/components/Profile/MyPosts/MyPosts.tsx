@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {MassagesData, MassagesDataType,} from '../../../index';
+import {PostsDataType} from '../../../State/State';
 
 type MyPoststype = {
-    MassagesData:Array<MassagesDataType>
+    PostsData:Array<PostsDataType>
 }
 
 export const MyPosts = (props: MyPoststype) => {
@@ -20,7 +20,7 @@ export const MyPosts = (props: MyPoststype) => {
                 </div>
             </div>
             <div className={s.posts}>
-                {MassagesData.map((m) => {
+                {props.PostsData.map((m) => {
                     return (
                         <Post key={m.id} message={m.massage} likesCount={m.likesCount}/>
                     )
