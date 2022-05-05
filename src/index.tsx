@@ -21,7 +21,7 @@ export const MassagesData=[
     {id:'2', massage:'It\'s my first post', likesCount:'23'},
 ]
 const DialogsData = [
-    {id: '1', name: 'Dimych'},
+    {id: '1', name: 'Dimychc'},
     {id: '2', name: 'Andrey'},
     {id: '3', name: 'Sveta'},
     {id: '4', name: 'Victor'},
