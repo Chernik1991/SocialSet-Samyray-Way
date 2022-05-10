@@ -8,28 +8,27 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from './components/New/News';
 import {Music} from './components/Music/Music';
 import {Setting} from './components/Setting/Setting';
-import {StateType} from './State/State';
+import {storeType} from './State/State';
 
 type AppType = {
-    State: StateType
-    updateNewPostText:(newText:string)=>void
-    addPost:()=>void
+    store: storeType
 }
 const App = (props: AppType) => {
+    const State=props.store.getState()
 
     const ProfilePostsData = () => {
         return (
             <Profile
-                ProfilePage={props.State.ProfilePage}
-                updateNewPostText={props.updateNewPostText}
-                addPost={props.addPost}/>
+                ProfilePage={State.ProfilePage}
+                updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                addPost={props.store.addPost.bind(props.store)}/>
         )
     }
     const DialogsDialogsData = () => {
         return (
             <Dialogs
-                DialogsData={props.State.DialogsPage.DialogsData}
-                DialogsMassagesData={props.State.DialogsPage.DialogsMassagesData}/>
+                DialogsData={State.DialogsPage.DialogsData}
+                DialogsMassagesData={State.DialogsPage.DialogsMassagesData}/>
         )
     }
     return (
