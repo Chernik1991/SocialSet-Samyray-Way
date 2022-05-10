@@ -8,17 +8,21 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from './components/New/News';
 import {Music} from './components/Music/Music';
 import {Setting} from './components/Setting/Setting';
-import {addPost, StateType,} from './State/State';
+import {StateType} from './State/State';
 
 type AppType = {
     State: StateType
-    addPost:(postMassage:string)=>void
+    updateNewPostText:(newText:string)=>void
+    addPost:()=>void
 }
 const App = (props: AppType) => {
 
     const ProfilePostsData = () => {
         return (
-            <Profile PostsData={props.State.ProfilePage.PostsData} addPost={addPost}/>
+            <Profile
+                ProfilePage={props.State.ProfilePage}
+                updateNewPostText={props.updateNewPostText}
+                addPost={props.addPost}/>
         )
     }
     const DialogsDialogsData = () => {
