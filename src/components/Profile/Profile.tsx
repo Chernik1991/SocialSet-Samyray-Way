@@ -1,5 +1,5 @@
 import React from 'react';
-import {PostsDataType, profilePageType} from '../../State/State';
+import {profilePageType} from '../../State/State';
 // import s from './Profile.module.css';
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
