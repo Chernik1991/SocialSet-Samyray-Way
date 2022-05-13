@@ -1,23 +1,22 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {PostsDataType} from '../../../State/State';
+import {ActiondTypes, PostsDataType} from '../../../State/State';
 
 type MyPoststype = {
     PostsData: Array<PostsDataType>
     NewPostText: string
-    updateNewPostText: (newText: string) => void
-    addPost: () => void
+    dispatch:(type:ActiondTypes)=>void
 }
 
 export const MyPosts = (props: MyPoststype) => {
 
     const onChangeHandler=(event:ChangeEvent<HTMLTextAreaElement>)=>{
-        props.updateNewPostText(event.currentTarget.value)
-
+        props.dispatch({type:'UPDATE-NEW-POST-TEXT',
+            newText:event.currentTarget.value})
     }
         const addPostHandler = () => {
-            props.addPost()
+            props.dispatch({type:'ADD-POST'})
     }
     return (
         <div className={s.postsBlock}>

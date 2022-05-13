@@ -23,14 +23,25 @@ export type DialogsMassagesDataType = {
     id: string,
     message: string
 }
-
+export type ActiondTypes=AddPostActionType|UpdateNewPostText
+type AddPostActionType= {
+    type: 'ADD-POST'
+}
+type UpdateNewPostText= {
+    type:'UPDATE-NEW-POST-TEXT',
+    newText:string
+}
 export type storeType = {
     _State: StateType,
-    updateNewPostText:(newText: string)=>void,
-    subscriber:(observer: () => void)=>void,
-    addPost:()=>void,
-    _callSabscriber:()=>void,
-    getState:()=>StateType,
+    _callSabscriber: () => void,
+
+    subscriber: (observer: () => void) => void,
+    getState: () => StateType,
+
+    // addPost: () => void,
+    // updateNewPostText: (newText: string) => void,
+
+    dispatch:(action:ActiondTypes)=>void
 }
 
 export const store: storeType = {
@@ -57,26 +68,44 @@ export const store: storeType = {
             ],
         }
     },
-    updateNewPostText(newText: string) {
-        this._State.ProfilePage.NewPostText = newText
-        this._callSabscriber();
+    _callSabscriber() {
     },
+
     subscriber(observer) {
         this._callSabscriber = observer
     },
-    addPost() {
-        const newPost: PostsDataType = {
-            id: '3',
-            massage: this._State.ProfilePage.NewPostText,
-            likesCount: '0'
-        };
-        this._State.ProfilePage.PostsData.push(newPost)
-        this._State.ProfilePage.NewPostText = ''
-        this._callSabscriber();
-    },
-    _callSabscriber() {
-    },
-    getState(){
+    getState() {
         return this._State
     },
+
+    // updateNewPostText(newText: string) {
+    //     this._State.ProfilePage.NewPostText = newText
+    //     this._callSabscriber();
+    // },
+    // addPost() {
+    //     const newPost: PostsDataType = {
+    //         id: '3',
+    //         massage: this._State.ProfilePage.NewPostText,
+    //         likesCount: '0'
+    //     };
+    //     this._State.ProfilePage.PostsData.push(newPost)
+    //     this._State.ProfilePage.NewPostText = ''
+    //     this._callSabscriber();
+    // },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostsDataType = {
+                id: '3',
+                massage: this._State.ProfilePage.NewPostText,
+                likesCount: '0'
+            };
+            this._State.ProfilePage.PostsData.push(newPost)
+            this._State.ProfilePage.NewPostText = ''
+            this._callSabscriber();
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._State.ProfilePage.NewPostText = action.newText
+            this._callSabscriber();
+        }
+    }
+
 }

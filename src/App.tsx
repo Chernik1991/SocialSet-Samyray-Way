@@ -20,8 +20,7 @@ const App = (props: AppType) => {
         return (
             <Profile
                 ProfilePage={State.ProfilePage}
-                updateNewPostText={props.store.updateNewPostText.bind(props.store)}
-                addPost={props.store.addPost.bind(props.store)}/>
+                dispatch={props.store.dispatch.bind(props.store)}/>
         )
     }
     const DialogsDialogsData = () => {
