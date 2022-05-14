@@ -1,5 +1,8 @@
 import {ChangeEvent} from 'react';
 
+const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT'
+const ADD_POST='ADD-POST'
+const UPDATE_NEW_MASSAGE_BODY='UPDATE-NEW-MASSAGE-BODY'
 export type StateType = {
     ProfilePage: profilePageType,
     DialogsPage: messagesPageType
@@ -11,6 +14,7 @@ export type profilePageType = {
 export type messagesPageType = {
     DialogsData: Array<DialogsDataType>
     DialogsMassagesData: Array<DialogsMassagesDataType>
+    NewMassageText:string
 }
 export type PostsDataType = {
     id: string,
@@ -26,13 +30,6 @@ export type DialogsMassagesDataType = {
     message: string
 }
 export type ActionTypes=AddPostActionType|UpdateNewPostText
-// export type AddPostActionType= {
-//     type: 'ADD-POST'
-// }
-// export type UpdateNewPostText= {
-//     type:'UPDATE-NEW-POST-TEXT',
-//     newText:string
-// }
 export type storeType = {
     _State: StateType,
     _callSubscriber: () => void,
@@ -83,6 +80,7 @@ export const store: storeType = {
                 {id: '2', message: 'Hi 2'},
                 {id: '3', message: 'Hi Hi Hi'}
             ],
+            NewMassageText:''
         }
     },
     _callSubscriber() {
@@ -95,7 +93,7 @@ export const store: storeType = {
         return this._State
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const newPost: PostsDataType = {
                 id: '3',
                 massage: this._State.ProfilePage.NewPostText,
@@ -104,9 +102,13 @@ export const store: storeType = {
             this._State.ProfilePage.PostsData.push(newPost)
             this._State.ProfilePage.NewPostText = ''
             this._callSubscriber();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        }
+        else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._State.ProfilePage.NewPostText = action.newText
             this._callSubscriber();
+        }
+        else if (action.type === UPDATE_NEW_MASSAGE_BODY){
+            // this._State.DialogsPage.DialogsMassagesData.
         }
     }
 
