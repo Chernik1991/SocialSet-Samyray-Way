@@ -1,8 +1,9 @@
 import {ChangeEvent} from 'react';
 
-const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT'
-const ADD_POST='ADD-POST'
-const UPDATE_NEW_MASSAGE_BODY='UPDATE-NEW-MASSAGE-BODY'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_MASSAGE_BODY = 'UPDATE-NEW-MASSAGE-BODY'
+const SEND_MESSAGE = 'SEND-MESSAGE'
 export type StateType = {
     ProfilePage: profilePageType,
     DialogsPage: messagesPageType
@@ -14,7 +15,7 @@ export type profilePageType = {
 export type messagesPageType = {
     DialogsData: Array<DialogsDataType>
     DialogsMassagesData: Array<DialogsMassagesDataType>
-    NewMassageText:string
+    NewMassageBody: string
 }
 export type PostsDataType = {
     id: string,
@@ -29,7 +30,7 @@ export type DialogsMassagesDataType = {
     id: string,
     message: string
 }
-export type ActionTypes=AddPostActionType|UpdateNewPostText
+export type ActionTypes = AddPostActionType | UpdateNewPostText|UpdateNewMessageBody|SendMessage
 export type storeType = {
     _State: StateType,
     _callSubscriber: () => void,
@@ -40,22 +41,37 @@ export type storeType = {
     // addPost: () => void,
     // updateNewPostText: (newText: string) => void,
 
-    dispatch:(action:ActionTypes)=>void
+    dispatch: (action: ActionTypes) => void
 }
 
-type AddPostActionType=ReturnType<typeof addPostAC>
-export const addPostAC=()=>{
-    return{
-        type:'ADD-POST'
+type AddPostActionType = ReturnType<typeof addPostAC>
+export const addPostAC = () => {
+    return {
+        type: 'ADD-POST'
     } as const
 }
-type UpdateNewPostText=ReturnType<typeof updateNewPostTextAC>
+type UpdateNewPostText = ReturnType<typeof updateNewPostTextAC>
 
-export const updateNewPostTextAC=(event:ChangeEvent<HTMLTextAreaElement>)=>{
-    const text=event.currentTarget.value
-    return{
-        type:'UPDATE-NEW-POST-TEXT',
+export const updateNewPostTextAC = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const text = event.currentTarget.value
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
         newText: text
+    } as const
+}
+type UpdateNewMessageBody = ReturnType<typeof UpdateNewMessageBodyAC>
+
+export const UpdateNewMessageBodyAC = (body:string) => {
+    return {
+        type: 'UPDATE-NEW-MASSAGE-BODY',
+        body:body
+    } as const
+}
+type SendMessage = ReturnType<typeof SendMessageAC>
+
+export const SendMessageAC = () => {
+    return {
+        type: 'SEND-MESSAGE',
     } as const
 }
 export const store: storeType = {
@@ -80,7 +96,7 @@ export const store: storeType = {
                 {id: '2', message: 'Hi 2'},
                 {id: '3', message: 'Hi Hi Hi'}
             ],
-            NewMassageText:''
+            NewMassageBody: ''
         }
     },
     _callSubscriber() {
@@ -99,16 +115,20 @@ export const store: storeType = {
                 massage: this._State.ProfilePage.NewPostText,
                 likesCount: '0'
             };
-            this._State.ProfilePage.PostsData.push(newPost)
-            this._State.ProfilePage.NewPostText = ''
+            this._State.ProfilePage.PostsData.push(newPost);
+            this._State.ProfilePage.NewPostText = '';
             this._callSubscriber();
-        }
-        else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._State.ProfilePage.NewPostText = action.newText
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._State.ProfilePage.NewPostText = action.newText;
             this._callSubscriber();
-        }
-        else if (action.type === UPDATE_NEW_MASSAGE_BODY){
-            // this._State.DialogsPage.DialogsMassagesData.
+        } else if (action.type === UPDATE_NEW_MASSAGE_BODY) {
+            this._State.DialogsPage.NewMassageBody = action.body;
+            this._callSubscriber()
+        } else if (action.type === SEND_MESSAGE) {
+            let body=this._State.DialogsPage.NewMassageBody;
+            this._State.DialogsPage.NewMassageBody=''
+            this._State.DialogsPage.DialogsMassagesData.push({id: '4', message: body})
+            this._callSubscriber()
         }
     }
 
