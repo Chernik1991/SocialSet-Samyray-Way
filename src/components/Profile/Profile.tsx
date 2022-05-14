@@ -1,12 +1,12 @@
 import React from 'react';
-import {ActiondTypes, profilePageType} from '../../State/State';
+import {ActionTypes, profilePageType} from '../../State/State';
 // import s from './Profile.module.css';
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 
 type ProfileType={
     ProfilePage:profilePageType
-    dispatch:(type:ActiondTypes)=>void
+    dispatch:(type:ActionTypes)=>void
 
 }
 

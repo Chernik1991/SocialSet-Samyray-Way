@@ -1,3 +1,5 @@
+import {ChangeEvent} from 'react';
+
 export type StateType = {
     ProfilePage: profilePageType,
     DialogsPage: messagesPageType
@@ -23,17 +25,17 @@ export type DialogsMassagesDataType = {
     id: string,
     message: string
 }
-export type ActiondTypes=AddPostActionType|UpdateNewPostText
-type AddPostActionType= {
-    type: 'ADD-POST'
-}
-type UpdateNewPostText= {
-    type:'UPDATE-NEW-POST-TEXT',
-    newText:string
-}
+export type ActionTypes=AddPostActionType|UpdateNewPostText
+// export type AddPostActionType= {
+//     type: 'ADD-POST'
+// }
+// export type UpdateNewPostText= {
+//     type:'UPDATE-NEW-POST-TEXT',
+//     newText:string
+// }
 export type storeType = {
     _State: StateType,
-    _callSabscriber: () => void,
+    _callSubscriber: () => void,
 
     subscriber: (observer: () => void) => void,
     getState: () => StateType,
@@ -41,9 +43,24 @@ export type storeType = {
     // addPost: () => void,
     // updateNewPostText: (newText: string) => void,
 
-    dispatch:(action:ActiondTypes)=>void
+    dispatch:(action:ActionTypes)=>void
 }
 
+type AddPostActionType=ReturnType<typeof addPostAC>
+export const addPostAC=()=>{
+    return{
+        type:'ADD-POST'
+    } as const
+}
+type UpdateNewPostText=ReturnType<typeof updateNewPostTextAC>
+
+export const updateNewPostTextAC=(event:ChangeEvent<HTMLTextAreaElement>)=>{
+    const text=event.currentTarget.value
+    return{
+        type:'UPDATE-NEW-POST-TEXT',
+        newText: text
+    } as const
+}
 export const store: storeType = {
     _State: {
         ProfilePage: {
@@ -68,30 +85,15 @@ export const store: storeType = {
             ],
         }
     },
-    _callSabscriber() {
+    _callSubscriber() {
     },
 
     subscriber(observer) {
-        this._callSabscriber = observer
+        this._callSubscriber = observer
     },
     getState() {
         return this._State
     },
-
-    // updateNewPostText(newText: string) {
-    //     this._State.ProfilePage.NewPostText = newText
-    //     this._callSabscriber();
-    // },
-    // addPost() {
-    //     const newPost: PostsDataType = {
-    //         id: '3',
-    //         massage: this._State.ProfilePage.NewPostText,
-    //         likesCount: '0'
-    //     };
-    //     this._State.ProfilePage.PostsData.push(newPost)
-    //     this._State.ProfilePage.NewPostText = ''
-    //     this._callSabscriber();
-    // },
     dispatch(action) {
         if (action.type === 'ADD-POST') {
             const newPost: PostsDataType = {
@@ -101,10 +103,10 @@ export const store: storeType = {
             };
             this._State.ProfilePage.PostsData.push(newPost)
             this._State.ProfilePage.NewPostText = ''
-            this._callSabscriber();
+            this._callSubscriber();
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._State.ProfilePage.NewPostText = action.newText
-            this._callSabscriber();
+            this._callSubscriber();
         }
     }
 
