@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import {DialogsItem} from './DialogsItem/DialogsItem';
 import {Message} from './Messages/Messages';
-import {DialogsDataType, DialogsMassagesDataType} from '../../State/State';
+import {
+    ActionTypes,
+    DialogsDataType,
+    DialogsMassagesDataType,
+    SendMessageAC,
+    UpdateNewMessageBodyAC,
+} from '../../State/State';
 
 type DialogsType = {
     DialogsData: Array<DialogsDataType>,
     DialogsMassagesData: Array<DialogsMassagesDataType>
+    NewMassageBody:string
+    dispatch:(type:ActionTypes)=>void
 }
 export const Dialogs = (props: DialogsType) => {
     const DialogsItemData =
@@ -22,9 +30,12 @@ export const Dialogs = (props: DialogsType) => {
             return (
                 <Message key={m.id} message={m.message}/>)
         })
-    const addMassage=React.createRef<HTMLTextAreaElement>()
+    const onChangeMassageHandler=(body:ChangeEvent<HTMLTextAreaElement>)=>{
+        props.dispatch(UpdateNewMessageBodyAC(body))
+
+    }
 const addMassageHandler=()=>{
-    alert(addMassage.current?.value)
+    props.dispatch(SendMessageAC())
 }
     return (
         <div className={s.dialogs}>
@@ -36,7 +47,7 @@ const addMassageHandler=()=>{
                     {MassagesData}
                 </div>
                 <div>
-                    <textarea ref={addMassage}></textarea>
+                    <textarea value={props.NewMassageBody} placeholder="Enter your message" onChange={onChangeMassageHandler}></textarea>
                 </div>
                 <div>
                     <button onClick={addMassageHandler}>addMassage</button>

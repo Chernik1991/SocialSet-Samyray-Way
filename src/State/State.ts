@@ -30,7 +30,7 @@ export type DialogsMassagesDataType = {
     id: string,
     message: string
 }
-export type ActionTypes = AddPostActionType | UpdateNewPostText|UpdateNewMessageBody|SendMessage
+export type ActionTypes = AddPostActionType | UpdateNewPostText | UpdateNewMessageBody | SendMessage
 export type storeType = {
     _State: StateType,
     _callSubscriber: () => void,
@@ -61,10 +61,11 @@ export const updateNewPostTextAC = (event: ChangeEvent<HTMLTextAreaElement>) => 
 }
 type UpdateNewMessageBody = ReturnType<typeof UpdateNewMessageBodyAC>
 
-export const UpdateNewMessageBodyAC = (body:string) => {
+export const UpdateNewMessageBodyAC = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const body = event.currentTarget.value
     return {
         type: 'UPDATE-NEW-MASSAGE-BODY',
-        body:body
+        body: body
     } as const
 }
 type SendMessage = ReturnType<typeof SendMessageAC>
@@ -125,8 +126,8 @@ export const store: storeType = {
             this._State.DialogsPage.NewMassageBody = action.body;
             this._callSubscriber()
         } else if (action.type === SEND_MESSAGE) {
-            let body=this._State.DialogsPage.NewMassageBody;
-            this._State.DialogsPage.NewMassageBody=''
+            let body = this._State.DialogsPage.NewMassageBody;
+            this._State.DialogsPage.NewMassageBody = ''
             this._State.DialogsPage.DialogsMassagesData.push({id: '4', message: body})
             this._callSubscriber()
         }

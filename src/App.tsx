@@ -12,10 +12,10 @@ import {storeType} from './State/State';
 
 type AppType = {
     store: storeType
+
 }
 const App = (props: AppType) => {
     const State=props.store.getState()
-
     const ProfilePostsData = () => {
         return (
             <Profile
@@ -27,7 +27,10 @@ const App = (props: AppType) => {
         return (
             <Dialogs
                 DialogsData={State.DialogsPage.DialogsData}
-                DialogsMassagesData={State.DialogsPage.DialogsMassagesData}/>
+                DialogsMassagesData={State.DialogsPage.DialogsMassagesData}
+                NewMassageBody={State.DialogsPage.NewMassageBody}
+                dispatch={props.store.dispatch.bind(props.store)}
+            />
         )
     }
     return (
