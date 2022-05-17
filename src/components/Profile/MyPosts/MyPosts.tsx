@@ -3,9 +3,9 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {
     ActionTypes,
-    addPostAC,
-    PostsDataType, updateNewPostTextAC,
-} from '../../../State/State';
+    PostsDataType,
+} from '../../../State/Store';
+import {addPostAC, updateNewPostTextAC} from '../../../State/ProfilePageReducer';
 
 type MyPostsType = {
     PostsData: Array<PostsDataType>

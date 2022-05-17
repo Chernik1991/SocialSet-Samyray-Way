@@ -6,9 +6,8 @@ import {
     ActionTypes,
     DialogsDataType,
     DialogsMassagesDataType,
-    SendMessageAC,
-    UpdateNewMessageBodyAC,
-} from '../../State/State';
+} from '../../State/Store';
+import {SendMessageAC, UpdateNewMessageBodyAC} from '../../State/DialogsPageReducer';
 
 type DialogsType = {
     DialogsData: Array<DialogsDataType>,

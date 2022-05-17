@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActionTypes, profilePageType} from '../../State/State';
+import {ActionTypes, profilePageType} from '../../State/Store';
 // import s from './Profile.module.css';
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
