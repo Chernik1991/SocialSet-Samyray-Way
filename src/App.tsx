@@ -11,7 +11,7 @@ import {Setting} from './components/Setting/Setting';
 import {storeType} from './State/Store';
 
 type AppType = {
-    store: storeType
+    store: any
 
 }
 const App = (props: AppType) => {

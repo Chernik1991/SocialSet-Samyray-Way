@@ -4,7 +4,16 @@ import {ChangeEvent} from 'react';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const ADD_POST = 'ADD-POST'
 
-export const ProfilePageReducer = (state:profilePageType, action:ActionTypes) => {
+const initialState={
+    PostsData: [
+        {id: '1', massage: 'Hi, how are you?', likesCount: '0'},
+        {id: '2', massage: 'It\'s my first post', likesCount: '23'},
+    ],
+    NewPostText: ''
+}
+
+
+export const ProfilePageReducer = (state:profilePageType=initialState, action:ActionTypes) => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PostsDataType = {
