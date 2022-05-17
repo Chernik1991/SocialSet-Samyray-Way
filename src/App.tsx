@@ -8,7 +8,6 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from './components/New/News';
 import {Music} from './components/Music/Music';
 import {Setting} from './components/Setting/Setting';
-import {storeType} from './State/Store';
 
 type AppType = {
     store: any
