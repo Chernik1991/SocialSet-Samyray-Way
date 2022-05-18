@@ -3,13 +3,13 @@ import {DialogsPageReducer, SendMessage, UpdateNewMessageBody} from './DialogsPa
 
 export type StateType = {
     ProfilePage: profilePageType,
-    DialogsPage: messagesPageType
+    DialogsPage: dialogsPageType
 }
 export type profilePageType = {
     PostsData: Array<PostsDataType>
     NewPostText: string
 }
-export type messagesPageType = {
+export type dialogsPageType= {
     DialogsData: Array<DialogsDataType>
     DialogsMassagesData: Array<DialogsMassagesDataType>
     NewMassageBody: string
@@ -76,8 +76,8 @@ export const store: storeType = {
         return this._State
     },
     dispatch(action) {
-        this._State.ProfilePage=ProfilePageReducer(this._State.ProfilePage, action)
-        this._State.DialogsPage=DialogsPageReducer(this._State.DialogsPage, action)
+        this._State.ProfilePage = ProfilePageReducer(this._State.ProfilePage, action)
+        this._State.DialogsPage = DialogsPageReducer(this._State.DialogsPage, action)
         this._callSubscriber()
     }
 

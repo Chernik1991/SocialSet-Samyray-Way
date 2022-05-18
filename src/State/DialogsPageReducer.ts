@@ -1,5 +1,5 @@
 import {ChangeEvent} from 'react';
-import {ActionTypes, messagesPageType} from './Store';
+import {ActionTypes, dialogsPageType} from './Store';
 
 const UPDATE_NEW_MASSAGE_BODY = 'UPDATE-NEW-MASSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
@@ -19,7 +19,7 @@ const initialState={
     ],
     NewMassageBody: ''
 }
-export const DialogsPageReducer = (state:messagesPageType=initialState, action:ActionTypes) => {
+export const DialogsPageReducer = (state:dialogsPageType=initialState, action:ActionTypes) => {
     switch (action.type) {
         case UPDATE_NEW_MASSAGE_BODY:
             state.NewMassageBody = action.body;

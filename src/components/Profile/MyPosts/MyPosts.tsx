@@ -2,26 +2,22 @@ import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {
-    ActionTypes,
     PostsDataType,
 } from '../../../State/Store';
-import {addPostAC, updateNewPostTextAC} from '../../../State/ProfilePageReducer';
-
 type MyPostsType = {
     PostsData: Array<PostsDataType>
     NewPostText: string
-    dispatch:(type:ActionTypes)=>void
+    updateNewPostText: (newText:ChangeEvent<HTMLTextAreaElement>) => void
+    addPost:()=>void
 }
-
-
 
 export const MyPosts = (props: MyPostsType) => {
 
-    const onChangeHandler=(newText:ChangeEvent<HTMLTextAreaElement>)=>{
-        props.dispatch(updateNewPostTextAC(newText))
+    const onChangeHandler = (newText: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostText(newText);
     }
-        const addPostHandler = () => {
-            props.dispatch(addPostAC())
+    const addPostHandler = () => {
+        props.addPost();
     }
     return (
         <div className={s.postsBlock}>
