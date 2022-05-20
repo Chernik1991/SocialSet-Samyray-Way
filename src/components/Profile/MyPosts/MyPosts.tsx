@@ -1,9 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {
-    PostsDataType,
-} from '../../../State/Store';
+import {PostsDataType} from '../../../State/ProfilePageReducer';
+
 type MyPostsType = {
     PostsData: Array<PostsDataType>
     NewPostText: string

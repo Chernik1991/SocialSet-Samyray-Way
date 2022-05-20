@@ -1,24 +1,27 @@
 import React, {ChangeEvent} from 'react';
 import {addPostAC, updateNewPostTextAC} from '../../../State/ProfilePageReducer';
+import { StoreContext } from '../../../StoreContext';
 import {MyPosts} from './MyPosts';
 
-type MyPostsType = {
-    store:any
-}
-export const MyPostsContainer = (props: MyPostsType) => {
+export const MyPostsContainer = () => {
+       return (
+        <StoreContext.Consumer>
+            {(store)=>{
+            const state = store.getState();
+            const updateNewPostText = (newText: ChangeEvent<HTMLTextAreaElement>) => {
+                store.dispatch(updateNewPostTextAC(newText))
+            }
+            const addPost = () => {
+                store.dispatch(addPostAC())
+            }
 
-    const state=props.store.getState();
-    const updateNewPostText = (newText: ChangeEvent<HTMLTextAreaElement>) => {
-        props.store.dispatch(updateNewPostTextAC(newText))
-    }
-    const addPost = () => {
-        props.store.dispatch(addPostAC())
-    }
-    return (
-        <MyPosts
-            PostsData={state.ProfilePage.PostsData}
-            NewPostText={state.ProfilePage.NewPostText} updateNewPostText={updateNewPostText}
-            addPost={addPost}
-        />
+            return(
+                <MyPosts
+                    PostsData={state.ProfilePage.PostsData}
+                    NewPostText={state.ProfilePage.NewPostText} updateNewPostText={updateNewPostText}
+                    addPost={addPost}
+                />)
+        }}
+        </StoreContext.Consumer>
     )
 }

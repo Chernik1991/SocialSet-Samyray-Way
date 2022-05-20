@@ -1,25 +1,23 @@
-import React, {ChangeEvent} from 'react';
+import {ChangeEvent} from 'react';
 import {SendMessageAC, UpdateNewMessageBodyAC} from '../../State/DialogsPageReducer';
 import {Dialogs} from './Dialogs';
+import {connect} from 'react-redux';
+import {AppStateType} from '../../State/ReduxStore';
 
-type DialogsType = {
-    store: any
+const mapStateToProps = (state: AppStateType) => {
+    return {
+        dialogsPage: state.DialogsPage
+    }
 }
-export const DialogsContainer = (props: DialogsType) => {
-    const state = props.store.getState().DialogsPage;
-
-    const UpdateNewMessageBody = (body: ChangeEvent<HTMLTextAreaElement>) => {
-        props.store.dispatch(UpdateNewMessageBodyAC(body))
-
+const mapDispatchToProps = (dispatch: (arg0: { type: "UPDATE-NEW-MASSAGE-BODY" | "SEND-MESSAGE"; body?: string; }) => void) => {
+    return {
+        UpdateNewMessageBody: (body: ChangeEvent<HTMLTextAreaElement>) => {
+            dispatch(UpdateNewMessageBodyAC(body));
+        },
+        SendMessage: () => {
+            dispatch(SendMessageAC())
+        }
     }
-    const SendMessage = () => {
-        props.store.dispatch(SendMessageAC())
-    }
-    return (
-        <Dialogs
-            UpdateNewMessageBody={UpdateNewMessageBody}
-            SendMessage={SendMessage}
-            state={state}
-        />
-    );
-};
+}
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);

@@ -1,9 +1,15 @@
 import {combineReducers, createStore} from 'redux';
-import {ProfilePageReducer} from './ProfilePageReducer';
-import {DialogsPageReducer} from './DialogsPageReducer';
+import {AddPostActionType, ProfilePageReducer, UpdateNewPostText} from './ProfilePageReducer';
+import {DialogsPageReducer, SendMessage, UpdateNewMessageBody} from './DialogsPageReducer';
 
-let reducers=combineReducers({
+export type ActionTypes = AddPostActionType | UpdateNewPostText | UpdateNewMessageBody | SendMessage
+
+
+const rootReducer=combineReducers({
     ProfilePage:ProfilePageReducer,
     DialogsPage:DialogsPageReducer
 })
-export let store = createStore(reducers);
+
+export type AppStateType=ReturnType<typeof rootReducer>
+
+export const store = createStore(rootReducer);

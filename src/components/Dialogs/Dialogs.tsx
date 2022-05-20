@@ -2,16 +2,17 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import {DialogsItem} from './DialogsItem/DialogsItem';
 import {Message} from './Messages/Messages';
-import {dialogsPageType} from '../../State/Store';
+import {dialogsPageType} from '../../State/DialogsPageReducer';
+
 type DialogsType = {
     UpdateNewMessageBody: (body: ChangeEvent<HTMLTextAreaElement>) => void
     SendMessage:()=>void
-    state: dialogsPageType
+    dialogsPage:dialogsPageType
 }
 export const Dialogs = (props: DialogsType) => {
 
     const DialogsItemData =
-        props.state.DialogsData.map((m) => {
+        props.dialogsPage.DialogsData.map((m) => {
             return (
                 <div className={s.dialog}>
                     <DialogsItem id={m.id} name={m.name}/>
@@ -19,7 +20,7 @@ export const Dialogs = (props: DialogsType) => {
         })
 
     const MassagesData =
-        props.state.DialogsMassagesData.map((m) => {
+        props.dialogsPage.DialogsMassagesData.map((m) => {
             return (
                 <Message key={m.id} message={m.message}/>)
         })
@@ -40,7 +41,7 @@ export const Dialogs = (props: DialogsType) => {
                     {MassagesData}
                 </div>
                 <div>
-                    <textarea value={props.state.NewMassageBody} placeholder="Enter your message"
+                    <textarea value={props.dialogsPage.NewMassageBody} placeholder="Enter your message"
                               onChange={onChangeMassageHandler}></textarea>
                 </div>
                 <div>

@@ -1,10 +1,22 @@
 import {ChangeEvent} from 'react';
-import {ActionTypes, dialogsPageType} from './Store';
+import {ActionTypes} from './ReduxStore';
 
 const UPDATE_NEW_MASSAGE_BODY = 'UPDATE-NEW-MASSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
-
-const initialState={
+export type dialogsPageType= {
+    DialogsData: Array<DialogsDataType>
+    DialogsMassagesData: Array<DialogsMassagesDataType>
+    NewMassageBody: string
+}
+export type DialogsMassagesDataType = {
+    id: string,
+    message: string
+}
+export type DialogsDataType = {
+    id: string,
+    name: string
+}
+const initialState:dialogsPageType={
     DialogsData: [
         {id: '1', name: 'Dimychc'},
         {id: '2', name: 'Andrey'},
@@ -19,7 +31,7 @@ const initialState={
     ],
     NewMassageBody: ''
 }
-export const DialogsPageReducer = (state:dialogsPageType=initialState, action:ActionTypes) => {
+export const DialogsPageReducer = (state:dialogsPageType=initialState, action:ActionTypes):dialogsPageType => {
     switch (action.type) {
         case UPDATE_NEW_MASSAGE_BODY:
             state.NewMassageBody = action.body;

@@ -9,26 +9,11 @@ import {Music} from './components/Music/Music';
 import {Setting} from './components/Setting/Setting';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 
-type AppType = {
-    store: any
-
-}
-const App = (props: AppType) => {
+const App = () => {
     const ProfilePostsData = () => {
-        return (
-            <Profile
-                store={props.store}
-
-            />
-        )
-    }
+        return <Profile/>}
     const DialogsDialogsData = () => {
-        return (
-            <DialogsContainer
-                store={props.store}
-            />
-        )
-    }
+        return <DialogsContainer/> }
     return (
         <BrowserRouter>
             <div className="app-wrapper">
