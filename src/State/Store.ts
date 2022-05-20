@@ -1,5 +1,5 @@
-import {AddPostActionType, ProfilePageReducer, UpdateNewPostText} from './ProfilePageReducer';
-import {DialogsPageReducer, SendMessage, UpdateNewMessageBody} from './DialogsPageReducer';
+import {AddPostActionType, UpdateNewPostText} from './ProfilePageReducer';
+import {SendMessage, UpdateNewMessageBody} from './DialogsPageReducer';
 
 type StateType = {
     ProfilePage: profilePageType,

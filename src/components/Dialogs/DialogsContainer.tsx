@@ -1,17 +1,28 @@
 import {ChangeEvent} from 'react';
-import {SendMessageAC, UpdateNewMessageBodyAC} from '../../State/DialogsPageReducer';
+import {dialogsPageType, SendMessageAC, UpdateNewMessageBodyAC} from '../../State/DialogsPageReducer';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../State/ReduxStore';
+import {Dispatch} from 'redux';
 
-const mapStateToProps = (state: AppStateType) => {
+type dialogsPage={
+    dialogsPage:dialogsPageType
+}
+
+type mapDispatchToPropsType= {
+    UpdateNewMessageBody: (body: ChangeEvent<HTMLTextAreaElement>) => void
+    SendMessage: () => void
+}
+
+export type DialogsType=dialogsPage & mapDispatchToPropsType
+const mapStateToProps = (state: AppStateType):dialogsPage => {
     return {
         dialogsPage: state.DialogsPage
     }
 }
-const mapDispatchToProps = (dispatch: (arg0: { type: "UPDATE-NEW-MASSAGE-BODY" | "SEND-MESSAGE"; body?: string; }) => void) => {
+const mapDispatchToProps = (dispatch:Dispatch):mapDispatchToPropsType => {
     return {
-        UpdateNewMessageBody: (body: ChangeEvent<HTMLTextAreaElement>) => {
+        UpdateNewMessageBody: (body) => {
             dispatch(UpdateNewMessageBodyAC(body));
         },
         SendMessage: () => {

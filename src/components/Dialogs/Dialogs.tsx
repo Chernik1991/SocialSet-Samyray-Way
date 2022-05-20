@@ -2,13 +2,8 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import {DialogsItem} from './DialogsItem/DialogsItem';
 import {Message} from './Messages/Messages';
-import {dialogsPageType} from '../../State/DialogsPageReducer';
+import {DialogsType} from './DialogsContainer';
 
-type DialogsType = {
-    UpdateNewMessageBody: (body: ChangeEvent<HTMLTextAreaElement>) => void
-    SendMessage:()=>void
-    dialogsPage:dialogsPageType
-}
 export const Dialogs = (props: DialogsType) => {
 
     const DialogsItemData =
