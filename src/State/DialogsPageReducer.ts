@@ -37,10 +37,7 @@ export const DialogsPageReducer = (state = initialState, action: ActionTypes) =>
                 NewMassageBody: action.body
             };
         case SEND_MESSAGE:
-            // state={...state}
             let body = state.NewMassageBody;
-            // state.NewMassageBody = ''
-            // state.DialogsMassagesData.push({id: '4', message: body})
             return {...state,
                 NewMassageBody:'',
                 DialogsMassagesData:[...state.DialogsMassagesData,{id: '4', message: body}]
