@@ -3,7 +3,7 @@ import {ActionTypes} from './ReduxStore';
 
 const UPDATE_NEW_MASSAGE_BODY = 'UPDATE-NEW-MASSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
-export type dialogsPageType= typeof initialState
+export type dialogsPageType = typeof initialState
 export type DialogsMassagesDataType = {
     id: string,
     message: string
@@ -12,7 +12,7 @@ export type DialogsDataType = {
     id: string,
     name: string
 }
-export const initialState={
+export const initialState = {
     DialogsData: [
         {id: '1', name: 'Dimychc'},
         {id: '2', name: 'Andrey'},
@@ -24,26 +24,29 @@ export const initialState={
         {id: '1', message: 'Hi'},
         {id: '2', message: 'Hi 2'},
         {id: '3', message: 'Hi Hi Hi'}
-    ]as Array<DialogsMassagesDataType>,
+    ] as Array<DialogsMassagesDataType>,
     NewMassageBody: '' as string,
 }
 
 
-export const DialogsPageReducer = (state=initialState, action:ActionTypes) => {
+export const DialogsPageReducer = (state = initialState, action: ActionTypes) => {
     switch (action.type) {
         case UPDATE_NEW_MASSAGE_BODY:
-            state={...state}
-            state.NewMassageBody = action.body;
-            return state;
+            return {
+                ...state,
+                NewMassageBody: action.body
+            };
         case SEND_MESSAGE:
-            state={...state}
+            // state={...state}
             let body = state.NewMassageBody;
-            state.NewMassageBody = ''
-            state.DialogsMassagesData.push({id: '4', message: body})
-            return state;
+            // state.NewMassageBody = ''
+            // state.DialogsMassagesData.push({id: '4', message: body})
+            return {...state,
+                NewMassageBody:'',
+                DialogsMassagesData:[...state.DialogsMassagesData,{id: '4', message: body}]
+            };
         default:
-            state={...state}
-            return state;
+            return {...state};
 
     }
 }
