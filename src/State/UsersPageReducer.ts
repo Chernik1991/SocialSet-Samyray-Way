@@ -8,12 +8,12 @@ export type UsersType = {
     id: string,
     photoUrl:string,
     followed: boolean,
-    fullName: string,
+    Name: string,
     status: string,
-    location: {
-        city: string,
-        country: string
-    }
+    // location: {
+    //     city: string,
+    //     country: string
+    // }
 }
 
 const initialState = {

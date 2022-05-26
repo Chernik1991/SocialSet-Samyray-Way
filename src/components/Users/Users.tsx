@@ -1,42 +1,25 @@
 import React from "react";
 import {usersType} from "./UsersContainer";
 import styles from './Users.module.css';
+import * as axios from "axios";
+import usersPhoto from '../../assets/images/usersPhoto.png'
 
-export const Users = (props: usersType) => {
-    if (props.users.length===0){
-    props.setUsers(
-        [
-        {
-            id: '1',
-            photoUrl: 'https://www.vokrug.tv/pic/person/a/0/d/8/a0d8156bf7574642ae923316e0e9438e.jpg',
-            followed: false,
-            fullName: 'Dmitry',
-            status: 'I am boss',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: '2',
-            photoUrl: 'https://www.vokrug.tv/pic/person/4/b/f/b/4bfb92c6cf25c1e8f576533f7821d5b7.jpg',
-            followed: true,
-            fullName: 'Sasha',
-            status: 'I am boss',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: '3',
-            photoUrl: 'https://uznayvse.ru/person/andrey-frolov/andrey_frolov01.jpg',
-            followed: false,
-            fullName: 'Andrew',
-            status: 'I am boss',
-            location: {city: 'Kiev', country: 'Ukraine'}
-        }
-    ]
-)}
-    return <div>{props.users.map((u) => (
+export let Users = (props: usersType) => {
+    let getUsers=()=>{
+        if (props.users.length===0){
+
+            axios.get{"https://social-network.samuraijs.com/api/1.0/users"}.then(response=>{
+                props.setUsers(response.data.items);
+            )};
+    }
+    }
+    return <div>
+        <button onClick={getUsers}>Get Users</button>
+        {props.users.map((u) => (
         <div key={u.id}>
         <span>
             <div>
-                <img src={u.photoUrl} alt={''} className={styles.photo}/>
+                <img src={u.photos.small !=null ? u.photos.small:usersPhoto} alt={''} className={styles.photo}/>
             </div>
             <div>
                 {u.followed
@@ -51,15 +34,15 @@ export const Users = (props: usersType) => {
         </span>
             <span>
             <div>
-                {u.fullName}
+                {u.Name}
             </div>
             <div>
                 {u.status}
             </div>
         </span>
             <span>
-            <div>{u.location.country}</div>
-            <div>{u.location.city}</div>
+            <div>{'u.location.country'}</div>
+            <div>{'u.location.city'}</div>
         </span>
         </div>))
     }</div>
