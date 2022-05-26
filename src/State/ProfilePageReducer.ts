@@ -5,10 +5,6 @@ import {ActionTypes} from './ReduxStore';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const ADD_POST = 'ADD-POST'
 
-// export type profilePageType = {
-//     PostsData: Array<PostsDataType>
-//     NewPostText: string
-// }
 type PostsDataType = {
     id: string,
     massage: string,

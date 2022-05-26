@@ -6,7 +6,7 @@ import {AppStateType} from '../../State/ReduxStore';
 import {Dispatch} from 'redux';
 
 type dialogsPage={
-    dialogsPage:dialogsPageType
+        dialogsPage:dialogsPageType
 }
 
 type mapDispatchToPropsType= {

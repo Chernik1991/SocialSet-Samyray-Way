@@ -37,7 +37,7 @@ export const Dialogs = (props: DialogsType) => {
                 </div>
                 <div>
                     <textarea value={props.dialogsPage.NewMassageBody} placeholder="Enter your message"
-                              onChange={onChangeMassageHandler}></textarea>
+    onChange={onChangeMassageHandler}/>
                 </div>
                 <div>
                     <button onClick={addMassageHandler}>addMassage</button>

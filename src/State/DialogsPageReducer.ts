@@ -3,7 +3,7 @@ import {ActionTypes} from './ReduxStore';
 
 const UPDATE_NEW_MASSAGE_BODY = 'UPDATE-NEW-MASSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
-export type dialogsPageType = typeof initialState
+
 export type DialogsMassagesDataType = {
     id: string,
     message: string
@@ -12,9 +12,10 @@ export type DialogsDataType = {
     id: string,
     name: string
 }
+export type dialogsPageType = typeof initialState
 export const initialState = {
     DialogsData: [
-        {id: '1', name: 'Dimychc'},
+        {id: '1', name: 'Dimych'},
         {id: '2', name: 'Andrey'},
         {id: '3', name: 'Sveta'},
         {id: '4', name: 'Victor'},
