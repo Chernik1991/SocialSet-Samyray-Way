@@ -10,7 +10,7 @@ export let Users = (props: usersType) => {
 
             axios.get{"https://social-network.samuraijs.com/api/1.0/users"}.then(response=>{
                 props.setUsers(response.data.items);
-            )};
+            });
     }
     }
     return <div>
@@ -19,7 +19,7 @@ export let Users = (props: usersType) => {
         <div key={u.id}>
         <span>
             <div>
-                <img src={u.photos.small !=null ? u.photos.small:usersPhoto} alt={''} className={styles.photo}/>
+                <img {u.photos.small !=null ? u.photos.small:usersPhoto} alt={''} className={styles.photo}/>
             </div>
             <div>
                 {u.followed
