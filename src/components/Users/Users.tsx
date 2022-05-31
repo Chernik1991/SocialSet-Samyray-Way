@@ -2,6 +2,7 @@ import React from "react";
 import styles from './Users.module.css';
 import usersPhoto from '../../assets/images/usersPhoto.png'
 import {UsersType} from '../../State/UsersPageReducer';
+import {NavLink} from 'react-router-dom';
 
 type UserType={
     onPageChanged:(pageNumber: number)=>void,
@@ -35,7 +36,9 @@ export const Users = (props: UserType) => {
                 <div key={u.id}>
         <span>
             <div>
+                <NavLink to={'/profile/'+u.id}>
                 <img src={u.photos.small != null ? u.photos.small : usersPhoto} alt={''} className={styles.photo}/>
+                </NavLink>
             </div>
             <div>
                 {u.followed
