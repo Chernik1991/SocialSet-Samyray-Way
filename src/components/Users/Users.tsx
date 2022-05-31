@@ -3,10 +3,16 @@ import styles from './Users.module.css';
 import usersPhoto from '../../assets/images/usersPhoto.png'
 import {UsersType} from '../../State/UsersPageReducer';
 
-type OnPageType={
+type UserType={
     onPageChanged:(pageNumber: number)=>void,
+    totalUsersCount:number
+    pageSize:number
+    currentPage:number
+    users:Array<UsersType>
+    unfollow:(UserID:string)=>void
+    follow:(UserID:string)=>void
+
 }
-type UserType=UsersType&OnPageType
 
 export const Users = (props: UserType) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
