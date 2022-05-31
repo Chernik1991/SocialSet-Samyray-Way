@@ -3,7 +3,7 @@ import {AddPostActionType, ProfilePageReducer, UpdateNewPostText} from './Profil
 import {DialogsPageReducer, SendMessage, UpdateNewMessageBody} from './DialogsPageReducer';
 import {
     FollowType,
-    SetCurrentPageType,
+    SetCurrentPageType, SetIsFetching,
     SetTotalUsersCount,
     SetUsersType,
     UnfollowType,
@@ -20,6 +20,7 @@ export type ActionTypes =
     | SetUsersType
     | SetCurrentPageType
     | SetTotalUsersCount
+    | SetIsFetching
 
 
 const rootReducer = combineReducers({
