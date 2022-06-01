@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import {Preloader} from '../../common/Preloader';
-import {profilePageType} from '../../../State/ProfilePageReducer';
+import {mapStateToProps} from '../ProfileContainer';
 
- export const ProfileInfo = (props:profilePageType) => {
+ export const ProfileInfo = (props:mapStateToProps) => {
      if (!props.Profile){
          return <Preloader/>
      }
