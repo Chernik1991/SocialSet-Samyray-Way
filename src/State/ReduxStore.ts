@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from 'redux';
-import {AddPostActionType, ProfilePageReducer, UpdateNewPostText} from './ProfilePageReducer';
+import {AddPostActionType, ProfilePageReducer, SetUsersProfile, UpdateNewPostText} from './ProfilePageReducer';
 import {DialogsPageReducer, SendMessage, UpdateNewMessageBody} from './DialogsPageReducer';
 import {
     FollowType,
@@ -13,6 +13,7 @@ import {
 export type ActionTypes =
     AddPostActionType
     | UpdateNewPostText
+    | SetUsersProfile
     | UpdateNewMessageBody
     | SendMessage
     | FollowType

@@ -72,8 +72,7 @@ const mapStateToProps = (state: AppStateType): usersPageType => {
         totalUsersCount: state.UsersPage.totalUsersCount,
         currentPage: state.UsersPage.currentPage,
         isFetching:state.UsersPage.isFetching,
-
-    }
+    } as usersPageType
 }
 // const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
 //     return {
