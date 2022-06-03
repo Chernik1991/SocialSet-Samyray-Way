@@ -40,7 +40,7 @@ export const UsersPageReducer = (state = initialState, action: ActionTypes) => {
                 ...state,
                 users:state.users.map((u)=>{
                     if(u.id===action.userID) {
-                        return {...u, followed: true}
+                        return {...u, followed: false}
                     }
                     return u;})
                 }
@@ -49,7 +49,7 @@ export const UsersPageReducer = (state = initialState, action: ActionTypes) => {
                 ...state,
                 users:state.users.map((u)=>{
                     if(u.id===action.userID) {
-                        return {...u, followed: false}
+                        return {...u, followed: true}
                     }
                     return u;})
             }
