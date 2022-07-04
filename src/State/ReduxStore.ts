@@ -3,12 +3,14 @@ import {AddPostActionType, ProfilePageReducer, SetUsersProfile, UpdateNewPostTex
 import {DialogsPageReducer, SendMessage, UpdateNewMessageBody} from './DialogsPageReducer';
 import {
     FollowType,
-    SetCurrentPageType, SetIsFetching,
+    SetCurrentPageType,
+    SetIsFetching,
+    SetIsFollowingInProgress,
     SetTotalUsersCount,
     SetUsersType,
     UnfollowType,
     UsersPageReducer
-} from "./UsersPageReducer";
+} from './UsersPageReducer';
 import {AuthReducer, SetUserDataType} from './Auth-Reducer';
 
 export type ActionTypes =
@@ -24,6 +26,8 @@ export type ActionTypes =
     | SetTotalUsersCount
     | SetIsFetching
     | SetUserDataType
+    | SetIsFollowingInProgress
+
 
 
 const rootReducer = combineReducers({

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import styles from './Users.module.css';
 import usersPhoto from '../../assets/images/usersPhoto.png'
 import {UsersType} from '../../State/UsersPageReducer';
@@ -6,6 +6,7 @@ import {NavLink} from 'react-router-dom';
 import {followAPI} from '../../api/API';
 
 type UserType = {
+    followingInProgress: Array<string>;
     onPageChanged: (pageNumber: number) => void,
     totalUsersCount: number
     pageSize: number
@@ -13,6 +14,8 @@ type UserType = {
     users: Array<UsersType>
     unfollow: (UserID: string) => void
     follow: (UserID: string) => void
+    setIsFollowingInProgress: (isFetching: boolean, id: string) => void
+
 
 }
 
@@ -44,12 +47,14 @@ export const Users = (props: UserType) => {
             <div>
                 {u.followed
                     ?
-                    <button onClick={() => {
+                    <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={() => {
+                        props.setIsFollowingInProgress(true,u.id);
                         followAPI.deleteFollow(u.id)
                             .then(data => {
                                 if (data.resultCode === 0) {
                                     props.follow(u.id);
                                 }
+                                props.setIsFollowingInProgress(false,u.id);
                             })
 
 
@@ -64,13 +69,15 @@ export const Users = (props: UserType) => {
                         //     }
                         // })
                     }}>Follow</button> :
-                    <button onClick={() => {
+                    <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={() => {
+                        props.setIsFollowingInProgress(true,u.id)
                         followAPI.postFollow(u.id)
-                        .then(data => {
-                            if (data.resultCode === 0) {
-                                props.unfollow(u.id);
-                            }
-                        })
+                            .then(data => {
+                                if (data.resultCode === 0) {
+                                    props.unfollow(u.id);
+                                }
+                                props.setIsFollowingInProgress(false,u.id);
+                            })
                     }}>Unfollow</button>}
             </div>
         </span>
