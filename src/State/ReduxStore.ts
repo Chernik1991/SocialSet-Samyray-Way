@@ -1,4 +1,5 @@
-import {combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
+import thunkMiddleware from 'redux-thunk'
 import {AddPostActionType, ProfilePageReducer, SetUsersProfile, UpdateNewPostText} from './ProfilePageReducer';
 import {DialogsPageReducer, SendMessage, UpdateNewMessageBody} from './DialogsPageReducer';
 import {
@@ -39,6 +40,6 @@ const rootReducer = combineReducers({
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer,applyMiddleware(thunkMiddleware));
 
-// window.store=store;
+//window.store=store;
