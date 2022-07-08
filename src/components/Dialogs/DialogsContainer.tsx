@@ -5,22 +5,24 @@ import {connect} from 'react-redux';
 import {AppStateType} from '../../State/ReduxStore';
 import {Dispatch} from 'redux';
 
-type dialogsPage={
-        dialogsPage:dialogsPageType
+type dialogsPage = {
+    dialogsPage: dialogsPageType,
+    isAuth:boolean
 }
 
-type mapDispatchToPropsType= {
+type mapDispatchToPropsType = {
     UpdateNewMessageBody: (body: ChangeEvent<HTMLTextAreaElement>) => void
     SendMessage: () => void
 }
 
-export type DialogsType=dialogsPage & mapDispatchToPropsType
-const mapStateToProps = (state: AppStateType):dialogsPage => {
+export type DialogsType = dialogsPage & mapDispatchToPropsType
+const mapStateToProps = (state: AppStateType): dialogsPage => {
     return {
-        dialogsPage: state.DialogsPage
-    }
+        dialogsPage: state.DialogsPage,
+        isAuth:state.Auth.isAuth
+    } as dialogsPage
 }
-const mapDispatchToProps = (dispatch:Dispatch):mapDispatchToPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         UpdateNewMessageBody: (body) => {
             dispatch(UpdateNewMessageBodyAC(body));
