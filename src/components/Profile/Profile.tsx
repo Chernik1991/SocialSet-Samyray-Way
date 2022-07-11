@@ -6,7 +6,7 @@ import {mapStateToProps} from './ProfileContainer';
 export const Profile = (props:mapStateToProps) => {
     return (
         <div>
-            <ProfileInfo Profile={props.Profile}/>
+            <ProfileInfo Profile={props.Profile} isAuth={props.isAuth}/>
             <MyPostsContainer/>
         </div>
     )

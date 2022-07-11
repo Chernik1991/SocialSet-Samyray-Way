@@ -16,7 +16,7 @@ export class ProfileAPIContainer extends React.Component<profileType, profileTyp
     };
 
     render() {
-        if (!this.props.isAuth) return <Redirect to={'/Login'}/>
+        if (!this.props.isAuth) return <Redirect to='/Login'/>;
         return <Profile {...this.props} Profile={this.props.Profile}/>
     };
 }
@@ -30,7 +30,7 @@ type PathParamsType = {
 
 type profileType = RouteComponentProps<PathParamsType> & mapStateToProps & mapDispatchToPropsType
 export type mapStateToProps = {
-    Profile: profilePageType & photosType,
+    Profile: profilePageType & photosType
     isAuth: boolean
 }
 
